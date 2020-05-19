@@ -52,6 +52,7 @@ group :development do
   gem 'guard', '~> 2.16', '>= 2.16.1'
   gem 'guard-livereload', '~> 2.5', '>= 2.5.2'
   gem 'better_errors', '~> 2.5', '>= 2.5.1'
+  gem 'awesome_print', '~> 1.8'
 end
 
 group :test do

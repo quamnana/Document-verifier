@@ -12,3 +12,11 @@
  */
 @import "bootstrap";
 @import "templates";
+
+.alert-notice{
+  @extend .alert-success;
+}
+
+.alert-alert{
+  @extend .alert-danger;
+}

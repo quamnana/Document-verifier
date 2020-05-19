@@ -1,5 +1,6 @@
 class TemplatesController < ApplicationController
 before_action :find_template, only: [:show, :edit, :update, :destroy]
+before_action :authenticate_user!, except: [:index, :show]
 
 	def index
 		@templates = Template.all
@@ -15,12 +16,13 @@ before_action :find_template, only: [:show, :edit, :update, :destroy]
 
 	def create
 		@template = Template.new(template_params)
+		@template.user = current_user
 
 		if @template.save
 			flash[:notice] = "Success"
 			redirect_to @template
 		else
-			flash[:alert] = "Failure"
+			flash.now[:alert] = "Failure"
 			render 'new'
 		end
 	end
@@ -34,14 +36,14 @@ before_action :find_template, only: [:show, :edit, :update, :destroy]
 			flash[:notice] = "Success"
 			redirect_to @template
 		else
-			flash[:alert] = "Failure"
+			flash.now[:alert] = "Failure"
 			render 'edit'
 		end
 	end
 
 	def destroy
 		@template.destroy
-		flash[:alert] = "Deleted"
+		flash.now[:alert] = "Deleted"
 		redirect_to templates_url
 	end
 
@@ -49,7 +51,7 @@ before_action :find_template, only: [:show, :edit, :update, :destroy]
 
 	private
 		def find_template
-			@template = Template.find_by(params[:id])
+			@template = Template.find(params[:id])
 		end
 
 		def template_params

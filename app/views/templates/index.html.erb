@@ -1,0 +1,10 @@
+<h1>List of Templates</h1>
+<br>
+<div class="col-sm-8">
+	<% @templates.each do |template| %>
+		<%= link_to template_path(template) do  %>
+			<h4><%= template.name %></h4>
+		<% end %>
+	<% end %>
+<hr>
+</div>

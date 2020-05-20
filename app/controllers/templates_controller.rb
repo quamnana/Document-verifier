@@ -1,9 +1,10 @@
 class TemplatesController < ApplicationController
-before_action :find_template, only: [:show, :edit, :update, :destroy]
-before_action :authenticate_user!, except: [:index, :show]
+	before_action :get_organization
+	before_action :set_template, only: [:show, :edit, :update, :destroy]
+	before_action :authenticate_user!
 
 	def index
-		@templates = Template.all
+		@templates = @organization.templates
 	end
 
 	def show
@@ -11,18 +12,18 @@ before_action :authenticate_user!, except: [:index, :show]
 	end
 
 	def new
-		@template = Template.new
+		@template = @organization.templates.build
 	end
 
 	def create
-		@template = Template.new(template_params)
+		@template = @organization.templates.build(template_params)
 		@template.user = current_user
 
 		if @template.save
-			flash[:notice] = "Success"
-			redirect_to @template
+			flash[:notice] = "Your template was created successfully!"
+			redirect_to root_path
 		else
-			flash.now[:alert] = "Failure"
+			flash[:alert] = "Your template was not created"
 			render 'new'
 		end
 	end
@@ -32,30 +33,37 @@ before_action :authenticate_user!, except: [:index, :show]
 	end
 
 	def update
+		
 		if @template.update(template_params)
-			flash[:notice] = "Success"
-			redirect_to @template
+			flash[:notice] = "Your template has been updated"
+			redirect_to organization_template_path(@organization)
 		else
-			flash.now[:alert] = "Failure"
+			flash[:alert] = "Your template has not been updated"
 			render 'edit'
 		end
 	end
 
 	def destroy
 		@template.destroy
-		flash.now[:alert] = "Deleted"
-		redirect_to templates_url
+		flash[:alert] = "Your template was deleted successfully"
+		redirect_to organization_template_path(@organization)
 	end
 
 
 
+
+
 	private
-		def find_template
-			@template = Template.find(params[:id])
+		def get_organization
+			@organization = Organization.find(params[:organization_id])
+		end
+
+		def set_template
+			@template = @organization.templates.find(params[:id])
 		end
 
 		def template_params
-			params.require(:template).permit(:name, :body)
+			params.require(:template).permit(:name, :body, :organization_id)
 		end
-
 end
+

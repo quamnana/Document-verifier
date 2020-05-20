@@ -1,3 +1,25 @@
-<% @organizations.each do |organization| %>
-	<%= organization.name %>
-<% end %>
+<div class="row">
+	<div class="col-sm-8 offset-2">
+		<div class="page-header">
+			<div class="text-sm-center">
+				<h2><strong>List of Organizations</strong></h2>
+				<h5>Click to see Organization Destails before you join. You can also create your own Organization too..</h5>
+			</div>
+			<br>
+			<% @organizations.each do |organization| %>
+				<div class="card">
+					 <div class="card-body">
+					   <%= link_to organization_path(organization) do %>
+							<h4 class="d-inline"><%= organization.name %></h4>	
+						<% end %>
+						<%= link_to "See Organization", organization_path(organization), class: "btn btn-outline-primary float-right d-inline" %>
+					 </div>
+					 <hr>
+				</div>
+			<% end %>
+		</div>
+	</div>
+</div>
+
+
+	

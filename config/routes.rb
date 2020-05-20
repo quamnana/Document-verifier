@@ -1,8 +1,17 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controller:{ registrations: 'registrations'}
   
-  resources :templates
-  resources :organizations
+  
+  
+  resources :organizations do
+  	resources :templates
+  	resources :memberships, only: [:create]
+  end
+  resources :users, only: [:show]
+  
+  
+  resources :users, only: [:show]
 
-  root "templates#index"
+
+  root "organizations#index"
 end

@@ -13,10 +13,20 @@
 @import "bootstrap";
 @import "templates";
 
+body {
+	background: rgb(235, 238, 243);
+	font-family: 'Helvetica Neue', Helvetica, Arial, Lato, sans-serif;
+  	font-size: 14px;
+  	color: #333;
+}
 .alert-notice{
   @extend .alert-success;
 }
 
 .alert-alert{
   @extend .alert-danger;
+}
+
+.page-header{
+	top: 5px;
 }

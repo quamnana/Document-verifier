@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_19_190857) do
+ActiveRecord::Schema.define(version: 2020_05_20_000627) do
 
   create_table "memberships", force: :cascade do |t|
     t.integer "user_id"
@@ -34,6 +34,8 @@ ActiveRecord::Schema.define(version: 2020_05_19_190857) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
+    t.integer "organization_id"
+    t.index ["organization_id"], name: "index_templates_on_organization_id"
     t.index ["user_id"], name: "index_templates_on_user_id"
   end
 

@@ -18,14 +18,15 @@
       <% end %>
 
       <% if user_signed_in? %>
-        <li class="nav-item">
-          <%= link_to "Add Template", new_template_path, class: "nav-link" %>
-        </li>
+        
         <li class="nav-item">
           <%= link_to "Create Organization", new_organization_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
           <%= link_to "Profile", edit_user_registration_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Groups", user_path(current_user), class: "nav-link" %>
         </li>
         <li class="nav-item">
           <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: "nav-link" %>

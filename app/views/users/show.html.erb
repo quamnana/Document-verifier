@@ -1,0 +1,14 @@
+<div class="row">
+	<div class="#">
+		<%= link_to "Create Organization", new_organization_path, class: "btn btn-primary" %>
+	</div>
+	<div class="col-sm-4">
+		<% if @user.created_organizations.any? %>
+			<% @user.created_organizations.each do |organization| %>
+				<h4><%= link_to organization.name, organization_path(organization) %></h4>
+			<% end %>
+		<% else %>
+			<h2>You have no Organization created yet!</h2>
+		<% end %>
+	</div>
+</div>

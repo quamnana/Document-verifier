@@ -2,9 +2,10 @@ class TemplatesController < ApplicationController
 	before_action :get_organization
 	before_action :set_template, only: [:show, :edit, :update, :destroy]
 	before_action :authenticate_user!
+	before_action :verify_owner!, only: [:edit, :update, :destroy]
 
 	def index
-		@templates = @organization.templates
+		@templates = @organization.templates.order(created_at: :DESC)
 	end
 
 	def show
@@ -21,7 +22,7 @@ class TemplatesController < ApplicationController
 
 		if @template.save
 			flash[:notice] = "Your template was created successfully!"
-			redirect_to root_path
+			redirect_to organization_path(@organization)
 		else
 			flash[:alert] = "Your template was not created"
 			render 'new'
@@ -46,7 +47,7 @@ class TemplatesController < ApplicationController
 	def destroy
 		@template.destroy
 		flash[:alert] = "Your template was deleted successfully"
-		redirect_to organization_template_path(@organization)
+		redirect_to organization_path(@organization)
 	end
 
 
@@ -60,10 +61,24 @@ class TemplatesController < ApplicationController
 
 		def set_template
 			@template = @organization.templates.find(params[:id])
+
+			rescue ActiveRecord::RecordNotFound 
+			flash[:alert] = "The page you requested does not exist"
+			redirect_to organization_path(@organization)
 		end
 
 		def template_params
-			params.require(:template).permit(:name, :body, :organization_id)
+			params.require(:template).permit(:name, :body, :organization_id, :category_id)
+		end
+
+		def verify_owner!
+			authenticate_user!
+
+			unless (@organization.owner == current_user || @template.user == current_user ) 
+				flash[:alert] = "you do not have permission to #{action_name} this Template"
+				redirect_to organization_path(@organization)
+			end
+			
 		end
 end
 

@@ -4,6 +4,8 @@ class Organization < ApplicationRecord
 	has_many :users, through: :memberships
 
 	has_many :templates, dependent: :destroy
+
+	has_many :categories
 	
 	belongs_to :owner, class_name: "User", foreign_key: "user_id"
 

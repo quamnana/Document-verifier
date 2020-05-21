@@ -6,11 +6,11 @@ Rails.application.routes.draw do
   resources :organizations do
   	resources :templates
   	resources :memberships, only: [:create]
+  	resources :categories
+  	
   end
   resources :users, only: [:show]
-  
-  
-  resources :users, only: [:show]
+ 
 
 
   root "organizations#index"

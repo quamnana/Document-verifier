@@ -1,9 +1,11 @@
-<div class="col-sm-8 offset-2">
-	<%= simple_form_for [@organization, @template] do |f| %>
+<%= simple_form_for [@organization, @template] do |f| %>
 		<%= f.input :name %>
 		
 		<%= f.input :body %>
 
-		<%= f.button :submit, class: "btn btn-primary" %>
+	 	<%= f.input :category_id, collection: Category.all, label: "Select Category", prompt: true %>
+
+		<%= f.button :submit, class: "btn btn-primary d-inline" %>
 	<% end %>
-</div>
+	<br>
+	<%= link_to "Back to Organization", organization_path(@organization), class: "btn btn-primary inline" %>

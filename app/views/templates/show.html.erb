@@ -3,6 +3,7 @@
 		<div class="page-header">
 			<div class="col-sm-4 offset-4">
 				<h4><strong><%= @template.name %></strong></h4>
+				<h6>Created By: <strong><%= @template.user.full_name %></strong></h6>
 			</div>
 			<br>
 			<div class="card">
@@ -18,7 +19,7 @@
 			<% if (@organization.owner == current_user || @template.user == current_user )  %>
 				<%= link_to "Edit Template", edit_organization_template_path, class: "btn btn-outline-success"  %>
 
-				<%= link_to "Delete Template", organization_template_path, method: :delete, data: {confirm: "Are you sure you want to delte this template?"}, class: "btn btn-outline-danger" %>
+				<%= link_to "Delete Template", organization_template_path, method: :delete, data: {confirm: "Are you sure you want to delete this template?"}, class: "btn btn-outline-danger" %>
 			<% end %>
 		</div>
 	</div>	

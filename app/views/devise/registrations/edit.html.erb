@@ -6,9 +6,10 @@
         <%= f.error_notification %>
 
         <div class="form-inputs">
-          <%= f.input :first_name, required: true, autofocus: true %>
-          <%= f.input :last_name, required: true, autofocus: true %>
-          <%= f.input :username, required: true, autofocus: true %>
+          
+          <%= f.input :first_name, required: true, autofocus: true,  placeholder: "Enter first name" %>
+          <%= f.input :last_name, required: true, autofocus: true,  placeholder: "Enter last name" %>
+          <%= f.input :username, required: true, autofocus: true, placeholder: "Enter username" %>
           <%= f.input :email, required: true, autofocus: true %>
 
           <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>

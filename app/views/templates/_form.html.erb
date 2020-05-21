@@ -1,7 +1,7 @@
 <%= simple_form_for [@organization, @template] do |f| %>
 		<%= f.input :name %>
 		
-		<%= f.input :body %>
+		<%= f.input :body, as: :trix_editor %>
 
 	 	<%= f.input :category_id, collection: Category.all, label: "Select Category", prompt: true %>
 

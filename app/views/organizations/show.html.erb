@@ -8,12 +8,15 @@
 			</div>
 
 			<div class="links">
-				<%= link_to "Back to Home", root_path, class: "btn btn-primary d-inline" %>
-
+				<%= link_to "Back to Home", organizations_path, class: "btn btn-primary d-inline" %>
+				
 				<%= link_to "Add Template", new_organization_template_path(@organization), class: "btn btn-primary  d-inline" %>
 				
+				
 				<%= link_to "Join Organization", organization_memberships_path(@organization), method: :post, class: "btn btn-success  d-inline" %>
-			</div>
+			</div> <br>
+			<h6>Organization Admin: <strong><%= @organization.owner.full_name %></strong></h6>
+
 
 			<div class="organization-links">
 				<% if @organization.owner == current_user %>
@@ -68,14 +71,14 @@
 		<div class="page-header">
 			<div class="category">
 				<div class="card border-top-0 border-bottom-0">
-					<div class="card-body">
-						<% if @organization.categories.any? %>
+					<% if @organization.categories.any? %>
+						<div class="card-body">
 							<% @organization.categories.each do |category|  %>
 							 	<h5><%= link_to category.name, organization_category_path(@organization, category)%></h5>
 							 	<hr>	
 			 				<% end %>
-						<% end %>
-					</div>
+						</div>
+					<% end %>
 				</div>
 			</div>
 		</div>

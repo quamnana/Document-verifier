@@ -9,7 +9,11 @@
  * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
+ *= require trix
  */
+
+
+
 @import "bootstrap";
 @import "templates";
 
@@ -29,4 +33,15 @@ body {
 
 .page-header{
 	top: 5px;
+}
+
+.jumbotron {
+    background-color:#3480eb !important; 
+    color: #ffffff;
+}
+
+.trix-content{
+    height: 350px;
+    overflow-y: auto;
+    background: #ffffff;
 }

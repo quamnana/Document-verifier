@@ -66,10 +66,9 @@ end
 gem 'bootstrap', '~> 4.5.0'
 gem 'jquery-rails'
 gem 'autoprefixer-rails'
-gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.5'
 gem 'devise', '~> 4.7', '>= 4.7.1'
 gem 'simple_form', '~> 5.0', '>= 5.0.1'
-gem 'pundit', '~> 2.1'
+gem 'trix-rails', require: 'trix'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

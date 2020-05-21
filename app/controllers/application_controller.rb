@@ -9,11 +9,15 @@ class ApplicationController < ActionController::Base
 	private
 		def configure_permitted_parameters
 			devise_parameter_sanitizer.permit(:sign_up) do |user|
-				user.permit(:email, :password, :password_confirmation)
+				user.permit(:first_name, :last_name, :username, :email, :password, :password_confirmation)
 			end
 			devise_parameter_sanitizer.permit(:account_update) do |user|
 				user.permit(:first_name, :last_name, :username, :email, :password, :current_password, :password_confirmation)
 			end
+		end
+
+		def after_sign_in_path_for(resource)
+			"/organizations"
 		end
 
 end

@@ -10,8 +10,8 @@ Rails.application.routes.draw do
   	
   end
   resources :users, only: [:show]
- 
+  resources :home, only:[:index]
 
 
-  root "organizations#index"
+  root "home#index"
 end

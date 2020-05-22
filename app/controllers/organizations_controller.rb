@@ -70,7 +70,7 @@ class OrganizationsController < ApplicationController
 			authenticate_user!
 
 			unless @organization.owner == current_user
-				flash[:alert] = "you do not have permission to #{action_name} this Organization"
+				flash[:alert] = "You do not have permission to #{action_name} this Organization"
 				redirect_to organizations_path
 			end
 			

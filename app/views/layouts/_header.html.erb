@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg  navbar-dark bg-dark">
   <a class="navbar-brand" href="#">Document-Verify</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -26,9 +26,6 @@
         </li>
         <li class="nav-item">
           <%= link_to "Groups", user_path(current_user), class: "nav-link" %>
-        </li>
-        <li class="nav-item nav-link">
-          <%= current_user.username %>
         </li>
         <li class="nav-item">
           <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: "nav-link" %>

@@ -58,10 +58,10 @@
 					<% if @organization.templates.any? %>
 						<%  @organization.templates.each do |template| %>
 							<h4 class="text-capitalize"><%= link_to template.name, organization_template_path(@organization, template) %></h4>
-							<hr>
 							<blockquote class="blockquote mb-0">
-						      <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
-						    </blockquote>	
+						      <footer class="blockquote-footer"><strong>Created By:</strong> <cite title="Source Title"><%= template.user.full_name %></cite></footer>
+						    </blockquote>
+							<hr>	
 						<% end %>
 					<% else %>
 						<h6>There are no Templates available yet! Create one using the "Add Template" button above..</h6>

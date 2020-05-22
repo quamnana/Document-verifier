@@ -73,7 +73,7 @@ class CategoriesController < ApplicationController
 			authenticate_user!
 
 			unless (@organization.owner == current_user) 
-				flash[:alert] = "you do not have permission to #{action_name} this Category"
+				flash[:alert] = "You do not have permission to #{action_name} this Category"
 				redirect_to organization_path(@organization)
 			end
 			

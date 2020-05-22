@@ -6,6 +6,8 @@
 				<h5>Click to see Organization Destails before you join. You can also create your own Organization too..</h5>
 			</div>
 			<br>
+
+		<!--Displaying list of templates in a specific category in a particular oganization-->
 			<% @category.templates.each do |template| %>
 				<div class="card">
 					 <div class="card-body">
@@ -18,6 +20,7 @@
 				</div>
 			<% end %>
 		</div>
+		
 		<div class="links">
 			<%= link_to "Back", organization_path(@organization), class: "btn btn-outline-primary" %>
 			

@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
 
 
 	private
+		# Permit other parameters that were added to Devise default parameters
 		def configure_permitted_parameters
 			devise_parameter_sanitizer.permit(:sign_up) do |user|
 				user.permit(:first_name, :last_name, :username, :email, :password, :password_confirmation)
@@ -16,6 +17,7 @@ class ApplicationController < ActionController::Base
 			end
 		end
 
+		# Redirecting to organizations_path after user is signed in
 		def after_sign_in_path_for(resource)
 			"/organizations"
 		end

@@ -58,13 +58,14 @@ class OrganizationsController < ApplicationController
 
 	private
 		def find_organization
-			@organization = Organization.find(params[:id])
+			@organization = Organization.friendly.find(params[:id])
 
+			# Rescue page if the page ID is not found
 			rescue ActiveRecord::RecordNotFound 
 			flash[:alert] = "The page you requested does not exist"
 			redirect_to organizations_path
 		end
-
+		# Verify if the current user is the owner or admin of the organization before giving permission to perform actions stated above
 		def verify_owner!
 			authenticate_user!
 

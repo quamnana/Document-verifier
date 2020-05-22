@@ -1,6 +1,8 @@
 class MembershipsController < ApplicationController
 	before_action :find_organization, only: [:create]
 	before_action :authenticate_user!
+	
+	# Giving membership right of an organization to the current user by passing the current user's ID
 	def create
 		@membership = @organization.memberships.where(user: current_user).first_or_create
 
@@ -12,6 +14,6 @@ class MembershipsController < ApplicationController
 
 	private
 		def find_organization
-			@organization = Organization.find(params[:organization_id])
+			@organization = Organization.friendly.find(params[:organization_id])
 		end
 end

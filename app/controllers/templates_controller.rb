@@ -56,12 +56,13 @@ class TemplatesController < ApplicationController
 
 	private
 		def get_organization
-			@organization = Organization.find(params[:organization_id])
+			@organization = Organization.friendly.find(params[:organization_id])
 		end
 
 		def set_template
-			@template = @organization.templates.find(params[:id])
+			@template = @organization.templates.friendly.find(params[:id])
 
+			# Rescue page if the page ID is not found
 			rescue ActiveRecord::RecordNotFound 
 			flash[:alert] = "The page you requested does not exist"
 			redirect_to organization_path(@organization)
@@ -71,6 +72,7 @@ class TemplatesController < ApplicationController
 			params.require(:template).permit(:name, :body, :organization_id, :category_id)
 		end
 
+		# Verify if the current user is the owner or admin of the organization or template before giving permission to perform actions stated above
 		def verify_owner!
 			authenticate_user!
 

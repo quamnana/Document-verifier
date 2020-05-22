@@ -2,6 +2,8 @@ class CategoriesController < ApplicationController
 	before_action :get_organization
 	before_action :set_category, only: [:show, :edit, :update, :destroy]
 	before_action :authenticate_user!
+	before_action :verify_owner!, only: [:edit, :update, :destroy]
+
 	def index
 		@categories = @organization.categories
 	end
@@ -50,14 +52,30 @@ class CategoriesController < ApplicationController
 
 	private
 		def get_organization
-			@organization = Organization.find(params[:organization_id])
+			@organization = Organization.friendly.find(params[:organization_id])
 		end
 
 		def set_category
-			@category = @organization.categories.find(params[:id])
+			@category = @organization.categories.friendly.find(params[:id])
+
+			# Rescue page if the page ID is not found
+			rescue ActiveRecord::RecordNotFound 
+			flash[:alert] = "The page you requested does not exist"
+			redirect_to organization_path(@organization)
 		end
 
 		def category_params
 			params.require(:category).permit(:name)
+		end
+
+		# Verify if the current user is the owner or admin of the organization before giving permission to perform actions stated above
+		def verify_owner!
+			authenticate_user!
+
+			unless (@organization.owner == current_user) 
+				flash[:alert] = "you do not have permission to #{action_name} this Category"
+				redirect_to organization_path(@organization)
+			end
+			
 		end
 end

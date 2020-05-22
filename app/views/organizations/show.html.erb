@@ -17,7 +17,7 @@
 			</div> <br>
 			<h6>Organization Admin: <strong><%= @organization.owner.full_name %></strong></h6>
 
-
+			<!-- These are links buttons that are exclusive only to the Admin/Creator of the Organization-->
 			<div class="organization-links">
 				<% if @organization.owner == current_user %>
 				<%= link_to "Delete Organization", organization_path(@organization), method: :delete, data:{confirm: "Are you sure you want to delete (#{@organization.name}) ?"}, class: "btn btn-outline-danger float-right mr-2" %>
@@ -36,7 +36,7 @@
 		<div class="page-header">
 			<div class="card">
 			  <div class="card-header">
-			    <h5><%= @organization.owner.email %></h5>	
+			    <h5>Organization Details</h5>	
 			  </div>
 			  <ul class="list-group list-group-flush">
 			    <li class="list-group-item"><h6>Members: <span class="badge badge-secondary"><%= @organization.users.count %></span></h6></li>
@@ -46,6 +46,7 @@
 			</div>
 		</div>
 	</div>
+	
 	<!-- Listing Templates on the page -->
 	<div class="col-sm-6">
 		<div class="page-header">
@@ -57,7 +58,10 @@
 					<% if @organization.templates.any? %>
 						<%  @organization.templates.each do |template| %>
 							<h4 class="text-capitalize"><%= link_to template.name, organization_template_path(@organization, template) %></h4>
-							<hr>	
+							<hr>
+							<blockquote class="blockquote mb-0">
+						      <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
+						    </blockquote>	
 						<% end %>
 					<% else %>
 						<h6>There are no Templates available yet! Create one using the "Add Template" button above..</h6>
@@ -67,6 +71,7 @@
 		</div>
 	</div>
 
+	<!-- Displaying list of categories that are in a specific Organization-->
 	<div class="col-sm-3">
 		<div class="page-header">
 			<div class="category">

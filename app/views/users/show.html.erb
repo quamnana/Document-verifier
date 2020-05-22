@@ -1,14 +1,48 @@
 <div class="row">
-	<div class="#">
-		<%= link_to "Create Organization", new_organization_path, class: "btn btn-primary" %>
+	<div class="col-sm-8">
+		<div class="page-header">
+			<!-- Displaying a list of Organizations owned by the current User -->
+			<%= link_to "Create Organization", new_organization_path, class: "btn btn-success" %>
+				<br><br>
+				<div class="card">
+					<% if @user.created_organizations.any? %>
+						<h4 class="card-header"><strong>My Organizations</strong>  <span class="badge badge-success"><%= @user.organizations.count %></span></h4>
+						<% @user.created_organizations.each do |organization| %>
+						  <div class="card-body">
+						    <h5 class="card-title"><%= link_to organization.name, organization_path(organization) %></h5>
+						    <hr>
+						   </div>
+						<% end %>
+					<% else %>
+						<h5>You have no Organization created yet!</h5>
+					<% end %>
+				</div>
+		</div>
 	</div>
+
+	<!--Displaying list of Templates crated or built by the current User-->
 	<div class="col-sm-4">
-		<% if @user.created_organizations.any? %>
-			<% @user.created_organizations.each do |organization| %>
-				<h4><%= link_to organization.name, organization_path(organization) %></h4>
-			<% end %>
-		<% else %>
-			<h2>You have no Organization created yet!</h2>
-		<% end %>
+		<br><br><br>
+		<div class="page-header">
+			<div class="card">
+				<% if @user.templates.any? %>
+					<h4 class="card-header"><strong>My Templates</strong>  <span class="badge badge-secondary"><%= @user.templates.count %></span></h4>
+					<% @user.templates.each do |template| %>
+						<div class="card-body">
+						    <h5><%= template.name%></h5>
+						    <hr>
+						</div>
+					<% end %>
+				<% else %>
+					<h5>You have no Templates created yet!</h5>	
+				<% end %>
+			</div>
+		</div>
 	</div>
 </div>
+
+
+
+
+
+

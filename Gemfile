@@ -5,8 +5,7 @@ ruby '2.5.7'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.4', '>= 5.2.4.2'
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
@@ -53,6 +52,8 @@ group :development do
   gem 'guard-livereload', '~> 2.5', '>= 2.5.2'
   gem 'better_errors', '~> 2.5', '>= 2.5.1'
   gem 'awesome_print', '~> 1.8'
+  # Use sqlite3 as the database for Active Record
+  gem 'sqlite3'
 end
 
 group :test do
@@ -63,6 +64,7 @@ group :test do
   gem 'chromedriver-helper'
 end
 
+# GEms used in this application
 gem 'bootstrap', '~> 4.5.0'
 gem 'jquery-rails'
 gem 'autoprefixer-rails'
@@ -71,5 +73,9 @@ gem 'simple_form', '~> 5.0', '>= 5.0.1'
 gem 'trix-rails', require: 'trix'
 gem 'friendly_id', '~> 5.3'
 
+group :production do
+  gem 'pg'
+  gem 'rails_12factor'
+end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

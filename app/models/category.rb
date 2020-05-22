@@ -7,5 +7,5 @@ class Category < ApplicationRecord
 	belongs_to :organization
 
 	# Validation
-	validates :name, presence: true, length:{ minimum: 5 }, uniqueness: true
+	validates :name, presence: true, length:{ minimum: 5 }
 end
